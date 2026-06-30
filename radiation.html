@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Proximity Screen Off</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: black;
+        overflow: hidden;
+        font-family: Arial, sans-serif;
+      }
+      #video {
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        transform: scaleX(-1);
+      }
+      #overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: black;
+        color: white;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        font-size: 24px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <video id="video" autoplay muted playsinline></video>
+    <div id="overlay">⚠ SCREEN OFF – OBJECT TOO CLOSE</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.10.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/blazeface"></script>
+
+    <script>
+      (async function () {
+        const video = document.getElementById("video");
+        const overlay = document.getElementById("overlay");
+
+        // Detect mobile
+        const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+        // Request camera
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: {
+            facingMode: isMobile ? "user" : "environment",
+            width: { ideal: 640 },
+            height: { ideal: 480 },
+          },
+        });
+        video.srcObject = stream;
+
+        // Wait until video is ready
+        await new Promise((resolve) => (video.onloadedmetadata = resolve));
+        video.play();
+
+        // Load AI model
+        const model = await blazeface.load();
+
+        async function detect() {
+          if (video.readyState < 2) {
+            requestAnimationFrame(detect);
+            return;
+          }
+
+          const faces = await model.estimateFaces(video, false);
+
+          if (faces.length > 0) {
+            const face = faces[0];
+            const faceWidth = face.bottomRight[0] - face.topLeft[0];
+            const screenWidth = video.videoWidth;
+
+            // Works on phone & laptop
+            if (faceWidth > screenWidth * 0.5) {
+              overlay.style.display = "flex"; // Screen off
+            } else {
+              overlay.style.display = "none"; // Screen on
+            }
+          } else {
+            overlay.style.display = "none";
+          }
+
+          requestAnimationFrame(detect);
+        }
+
+        detect();
+      })();
+    </script>
+  </body>
+</html>
