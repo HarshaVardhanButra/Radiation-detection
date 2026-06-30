@@ -1,0 +1,10 @@
+ Usage Instructions
+
+1. Download or clone the project repository to your local system.
+2. Open the project folder and launch the `index.html` file in a modern web browser such as Chrome, Microsoft Edge, or Firefox.
+3. Allow camera or Bluetooth permissions if prompted (only if those features are implemented in the project).
+4. The application will display the radiation monitoring interface.
+5. In simulation mode, the system generates and displays simulated radiation values that update automatically at regular intervals.
+6. If an external radiation sensor is connected via Bluetooth or USB, the application will receive and display real-time radiation measurements from the device.
+7. Monitor the displayed radiation values and any warning messages or alerts if the readings exceed the predefined safety threshold.
+8. To stop monitoring, close the browser tab or disconnect the external radiation sensor.
