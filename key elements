@@ -1,0 +1,14 @@
+The **key elements** of this project are:
+
+1. **HTML User Interface** – Provides a simple and responsive interface to display radiation readings and system status.
+2. **CSS Styling** – Enhances the visual appearance with a clean and user-friendly design.
+3. **JavaScript Logic** – Controls the application's functionality, updates radiation values, and manages user interactions.
+4. **Radiation Data Source** – Uses either simulated radiation values or real-time data from an external radiation sensor.
+5. **Web Bluetooth/Web Serial Integration (Optional)** – Enables communication with compatible external radiation detection devices.
+6. **Real-Time Data Display** – Continuously updates and displays radiation readings on the screen.
+7. **Threshold Monitoring** – Compares radiation levels against predefined safety limits and identifies abnormal values.
+8. **Alert Mechanism** – Displays visual or audio alerts when radiation levels exceed the configured threshold.
+9. **Cross-Platform Compatibility** – Designed to run in modern web browsers on desktops, mobile devices, and compatible smart TVs.
+10. **Educational and Monitoring Purpose** – Demonstrates radiation monitoring concepts and serves as a foundation for IoT-based environmental safety applications.
+
+These components work together to create a web-based radiation monitoring system, either as a simulation or as an interface for a real external radiation sensor.
