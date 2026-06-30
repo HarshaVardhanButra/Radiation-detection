@@ -1,0 +1,11 @@
+Radiation detection cannot be performed directly by mobile phones or TVs using HTML and JavaScript alone 
+because these devices do not contain dedicated radiation-sensing hardware such as Geiger–Müller tubes or
+dosimeters. The HTML code provided serves as a user interface that can either simulate radiation readings
+for demonstration and educational purposes or display real radiation data received from an external sensor. 
+In the simulation version, JavaScript generates random values that mimic radiation levels and updates them 
+on the screen at regular intervals. In the real-sensor version, the application uses technologies such as 
+the Web Bluetooth API to connect to a compatible external radiation detector and display actual measurements. 
+While this approach is useful for creating monitoring dashboards, educational tools, and IoT-based radiation 
+monitoring systems, the accuracy of the readings depends entirely on the external sensor being used. Therefore, 
+without specialized radiation-detection hardware, mobile phones and TVs can only simulate radiation measurements
+rather than detect real radiation.
